@@ -24,14 +24,13 @@
                 font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 height: 100%;
                 width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
+                display: grid;
+                place-items: center; 
                 color: #762E7A;
             }
             .container {
                 max-width: 480px;
-                flex: 1;
+                width: 100%;
             }
             h1 {
                 font-size: 2.5em;
@@ -81,8 +80,46 @@
                 animation: rotate 20s infinite;
                 animation-delay: 15s;
             }
+
             .error {
-                font-size: 8px;
+                border: 1px solid #ccc;
+            }
+
+            .content {
+                display: none;
+                padding: 10px;
+                border-top: 1px solid #ccc;
+                background: #f9f9f9;
+            }
+
+            input[type="checkbox"] {
+                display: none;
+            }
+
+            label {
+                position: relative;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+
+                padding: 10px;
+                font-size: 1.25em;
+            }
+
+            label::after {
+                position: absolute;
+                right: 10px;
+                content: "▼";
+                margin-left: 5px;
+                transition: transform 0.3s ease;
+            }
+
+            input[type="checkbox"]:checked + label::after {
+                transform: rotate(180deg);
+            }
+
+            input[type="checkbox"]:checked + label + .content {
+                display: block;
             }
 
             @keyframes rotate {
@@ -142,7 +179,11 @@
                 </div>
             </div>
             <div class="error">
-                ::CLOUDFLARE_ERROR_500S_BOX::
+                <input type="checkbox" id="toggle-details">
+                <label for="toggle-details">Details</label>
+                <div class="content">
+                  ::CLOUDFLARE_ERROR_500S_BOX::
+                </div>
             </div>
         </div>
     </body>
